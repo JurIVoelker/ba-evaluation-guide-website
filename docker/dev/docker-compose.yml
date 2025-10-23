@@ -1,0 +1,37 @@
+services:
+  app:
+    build:
+      context: ../../
+      dockerfile: docker/dev/Dockerfile
+    volumes:
+      - ../../:/workspace:cached
+      - /workspace/node_modules
+      - /workspace/.next
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    depends_on:
+      - db
+    environment:
+      DB_URL: postgresql://devuser:devpassword@db:5432/devdb
+    networks:
+      - appnet
+  db:
+    image: postgres:18
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpassword
+      POSTGRES_DB: devdb
+    volumes:
+      - db-data:/var/lib/postgresql
+    networks:
+      - appnet
+volumes:
+  db-data:
+networks:
+  appnet:
+    driver: bridge
