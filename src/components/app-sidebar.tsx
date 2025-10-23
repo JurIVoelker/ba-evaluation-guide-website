@@ -9,9 +9,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "./ui/sidebar";
-import { CheckIcon, Loader2, Minus } from "lucide-react";
+import { CheckIcon, Loader2, Minus, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import CodeCopy from "./code-copy";
+import RestartDialog from "./restart-dialog";
 
 const steps: Record<string, SidebarStep> = {
   intro: { label: "Einführung" },
@@ -85,14 +86,24 @@ const AppSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        {uuid && (
-          <SidebarContent className="p-1 pb-4">
-            <span>
+        <SidebarContent className="p-1 pb-4">
+          {uuid && (
+            <span className="mb-2">
               <p className="text-sm pb-1">Deine Id</p>
               <CodeCopy className="text-sm">{uuid}</CodeCopy>
             </span>
-          </SidebarContent>
-        )}
+          )}
+          <RestartDialog
+            onConfirm={() => {
+              localStorage.clear();
+              window.location.reload();
+            }}
+          >
+            <SidebarMenuButton>
+              <RotateCcw className="text-gray-500" /> Von vorne beginnen
+            </SidebarMenuButton>
+          </RestartDialog>
+        </SidebarContent>
       </SidebarFooter>
     </Sidebar>
   );
