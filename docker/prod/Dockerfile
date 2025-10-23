@@ -15,7 +15,5 @@ RUN bun run build
 RUN bunx prisma migrate deploy
 RUN bunx prisma generate
 
-RUN rm -rf .env.local
-
 EXPOSE 3000
 CMD ["bun", "run", "start"]
