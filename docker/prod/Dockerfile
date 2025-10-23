@@ -2,7 +2,7 @@ FROM oven/bun:alpine AS install
 WORKDIR /app
 
 COPY package.json ./
-RUN bun i --production
+RUN bun i
 
 FROM oven/bun:alpine AS build
 WORKDIR /app
@@ -14,6 +14,8 @@ RUN bun run build
 
 RUN bunx prisma migrate deploy
 RUN bunx prisma generate
+
+RUN rm -rf .env.local
 
 EXPOSE 3000
 CMD ["bun", "run", "start"]
