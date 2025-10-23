@@ -31,7 +31,7 @@ const CodeStep = ({ ...props }) => {
       if (!id.trim()) throw new Error("Bitte eine Id eingeben");
 
       const idRegex =
-        /^(?:A_|B_)[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+        /^(?:A_|B_)[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if (!idRegex.test(id.trim())) {
         throw new Error(
           "Ungültige ID. Kopiere die vollständige ID und versuche es erneut. Die ID besteht aus einem Buchstaben (A_ oder B_) gefolgt von einer UUID."
