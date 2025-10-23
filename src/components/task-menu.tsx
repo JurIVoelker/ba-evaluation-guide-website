@@ -82,7 +82,7 @@ const TaskMenu = ({
           )}
         </Button>
         <ConfirmDialog onConfirm={onFinish}>
-          <Button>
+          <Button data-test-id="finish-task-button">
             <Flag />
             Fertig
           </Button>
