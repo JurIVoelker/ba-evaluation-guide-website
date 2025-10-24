@@ -63,12 +63,14 @@ const DevContainer = () => {
         {" mit dem folgenden Inhalt:"}
       </p>
       <CodeCopy className="my-4 max-w-2xl" textArea>
-        {(process.env.NEXT_PUBLIC_DEV_CONTAINER_JSON || "error").replace(
-          "placeholder",
-          process.env.NEXT_PUBLIC_DOCKER_REGISTRY_HOST +
-            "/" +
-            process.env.NEXT_PUBLIC_DOCKER_EVALUATION_IMAGE
-        )}
+        {(process.env.NEXT_PUBLIC_DEV_CONTAINER_JSON || "error")
+          .replace(
+            "placeholder",
+            process.env.NEXT_PUBLIC_DOCKER_REGISTRY_HOST +
+              "/" +
+              process.env.NEXT_PUBLIC_DOCKER_EVALUATION_IMAGE
+          )
+          .replaceAll("\\'", '"')}
       </CodeCopy>
       <p>
         Dann öffne die Kommando-Palette mit <Kbd>⌘+Shift+P</Kbd>
