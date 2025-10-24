@@ -88,7 +88,7 @@ const CodeStep = ({ ...props }) => {
           Um den Code hochzuladen, führe folgendes Kommando in dem
           Container-Terminal aus:
         </p>
-        <CodeCopy className="my-4">{`bun upload-code`}</CodeCopy>
+        <CodeCopy className="my-4">{`bun upload-results -g ${group}`}</CodeCopy>
         <p>
           Am Ende des Kommandos, wird eine Id zurückgegeben. Diese wird außerdem
           in der Datei <span className="bg-card px-2 rounded-sm">id.txt</span>{" "}
