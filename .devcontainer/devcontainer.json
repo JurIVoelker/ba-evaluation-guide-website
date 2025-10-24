@@ -5,7 +5,16 @@
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
-      "extensions": ["dbaeumer.vscode-eslint", "mhutchie.git-graph", "GitHub.copilot", "GitHub.copilot-chat", "esbenp.prettier-vscode", "Prisma.prisma", "burkeholland.simple-react-snippets",  "bradlc.vscode-tailwindcss"]
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "mhutchie.git-graph",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "esbenp.prettier-vscode",
+        "Prisma.prisma",
+        "burkeholland.simple-react-snippets",
+        "bradlc.vscode-tailwindcss"
+      ]
     }
   }
 }

@@ -3,6 +3,7 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
   Tooltip,
@@ -14,14 +15,16 @@ import {
 export default function CodeCopy({
   children,
   className,
+  textArea,
   ...props
 }: {
   children: string;
   className?: string;
+  textArea?: boolean;
 }) {
   const id = useId();
   const [copied, setCopied] = useState<boolean>(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement & HTMLTextAreaElement>(null);
 
   const handleCopy = () => {
     if (inputRef.current) {
@@ -30,6 +33,7 @@ export default function CodeCopy({
       setTimeout(() => setCopied(false), 1500);
     }
   };
+  const Comp = textArea ? Textarea : Input;
 
   return (
     <div className={cn(className)} {...props}>
@@ -37,7 +41,7 @@ export default function CodeCopy({
         Copy to clipboard
       </Label>
       <div className="relative">
-        <Input
+        <Comp
           ref={inputRef}
           id={id}
           className="pe-9"

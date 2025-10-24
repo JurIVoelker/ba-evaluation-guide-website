@@ -3,6 +3,7 @@ import CodeCopy from "../code-copy";
 import { useMainStore } from "@/store/main-store";
 import { useEffect } from "react";
 import NextButton from "../next-button";
+import { Kbd } from "../ui/kbd";
 
 const InstallRancherStep = () => {
   return (
@@ -19,7 +20,7 @@ const InstallRancherStep = () => {
   );
 };
 
-const DockerLogin = () => {
+const DockerPull = () => {
   const dockerHost =
     process.env.NEXT_PUBLIC_DOCKER_REGISTRY_HOST || "docker.voelkerlabs.de";
   const dockerImage =
@@ -47,16 +48,37 @@ const DevContainer = () => {
     <>
       <h2>Dev Container</h2>
       <p>
-        {
-          "Um den Dev Container zu verwenden, öffne Visual Studio Code und stelle sicher, dass die Erweiterung "
-        }
+        Öffne Visual Studio Code in einem neuen Ordner, den du für dieses
+        {" Projekt verwenden möchtest. Stelle sicher, dass die Erweiterung "}
         <Link
           href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers"
           target="_blank"
         >
           Dev Containers
         </Link>{" "}
-        installiert ist. TODO
+        installiert ist. Erstelle eine neue Datei{" "}
+        <code className="bg-slate-100 p-1 rounded-md">
+          .devcontainer/devcontainer.json
+        </code>
+        {" mit dem folgenden Inhalt:"}
+      </p>
+      <CodeCopy className="my-4 max-w-2xl" textArea>
+        {(process.env.NEXT_PUBLIC_DEV_CONTAINER_JSON || "error").replace(
+          "placeholder",
+          process.env.NEXT_PUBLIC_DOCKER_REGISTRY_HOST +
+            "/" +
+            process.env.NEXT_PUBLIC_DOCKER_EVALUATION_IMAGE
+        )}
+      </CodeCopy>
+      <p>
+        Dann öffne die Kommando-Palette mit <Kbd>⌘+Shift+P</Kbd>
+        {" bzw. "}
+        <Kbd>Strg+Shift+P</Kbd> und wähle{" "}
+        <code className="bg-slate-100 p-1 rounded-md">
+          Dev Containers: Reopen in Container
+        </code>
+        . Visual Studio Code wird jetzt den Dev Container starten und dich
+        automatisch darin verbinden.
       </p>
     </>
   );
@@ -66,7 +88,10 @@ const FinishStep = () => {
   return (
     <>
       <h2>Fertig</h2>
-      <p className="mb-4">Du kannst jetzt mit der ersten Aufgabe anfangen</p>
+      <p className="mb-4">
+        Es sind bereits alle Abhängigkeiten installiert. Du kannst jetzt mit der
+        ersten Aufgabe anfangen.
+      </p>
       <NextButton />
     </>
   );
@@ -76,7 +101,7 @@ const Setup = () => {
   const { setProgress, progress } = useMainStore();
   const steps = [
     <InstallRancherStep key={0} />,
-    <DockerLogin key={1} />,
+    <DockerPull key={1} />,
     <DevContainer key={2} />,
     <FinishStep key={3} />,
   ];
