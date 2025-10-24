@@ -75,7 +75,7 @@ const DevContainer = () => {
         {" bzw. "}
         <Kbd>Strg+Shift+P</Kbd> und wähle{" "}
         <code className="bg-slate-100 p-1 rounded-md">
-          Dev Containers: Reopen in Container
+          &gt;Dev Containers: Reopen in Container
         </code>
         . Visual Studio Code wird jetzt den Dev Container starten und dich
         automatisch darin verbinden.
