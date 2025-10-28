@@ -10,16 +10,21 @@ const font = Poppins({
   weight: ["400", "500", "600"],
 });
 
-const Layout = ({ children, ...props }: React.HTMLProps<HTMLDivElement>) => {
+const Layout = ({
+  children,
+  hideSidebar = false,
+  ...props
+}: React.HTMLProps<HTMLDivElement> & { hideSidebar?: boolean }) => {
   return (
     <SidebarProvider className={cn(font.className)}>
-      <AppSidebar />
+      {!hideSidebar && <AppSidebar />}
       <Toaster />
       <div
         {...props}
         className={cn(
           props.className,
-          "w-full min-h-screen p-8 pl-[calc(var(--sidebar-width)+2rem)]"
+          "w-full min-h-screen p-8",
+          !hideSidebar && "pl-[calc(var(--sidebar-width)+2rem)]"
         )}
       >
         {children}

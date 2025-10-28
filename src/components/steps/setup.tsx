@@ -26,7 +26,7 @@ const Debugging = () => {
           </AccordionTrigger>
           <AccordionContent className="px-4">
             <p className="font-medium mb-1">
-              Bei fehler unter Windows mit Rancher Desktop:
+              Bei Fehlern unter Windows mit Rancher Desktop:
             </p>
             <p>
               Wenn bei dem Öffnen des Dev-Containers ein Fehler auftritt, öffne
@@ -49,7 +49,7 @@ const Debugging = () => {
   );
 };
 
-const InstallRancherStep = () => {
+export const InstallRancherStep = () => {
   return (
     <>
       <h2>Docker installieren</h2>
@@ -64,7 +64,7 @@ const InstallRancherStep = () => {
   );
 };
 
-const DockerPull = () => {
+export const DockerPull = () => {
   const dockerHost =
     process.env.NEXT_PUBLIC_DOCKER_REGISTRY_HOST || "docker.voelkerlabs.de";
   const dockerImage =
@@ -73,8 +73,7 @@ const DockerPull = () => {
     <>
       <h2>Docker Image Pull</h2>
       <p>
-        Stelle sicher, dass die Docker-Engine auf deinem Gerät läuft, bevor das
-        Docker-Image gepulled wird.
+        Stelle sicher, dass die Docker-Engine auf deinem Gerät läuft.
         {/* Dann logge dich in dem Docker Registry ein, indem du den folgenden Befehl
       in deiner Konsole ausführst. Nutze das selbe Passwort wie für diese
       Webseite: */}

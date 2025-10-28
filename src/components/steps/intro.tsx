@@ -48,9 +48,9 @@ const Intro = () => {
         <li>Ergebnisse aus Umfrage</li>
       </ul>
       <p>
-        Die Ergebnisse der Umfrage sind <strong>anonym</strong>, damit sich
-        niemand unter Druck gesetzt fühlt. Um die Daten einander zuordnen zu
-        können, wird eine zufällige ID generiert.
+        Alle Ergebnisse sind <strong>anonym</strong>, damit sich niemand unter
+        Druck gesetzt fühlt. Ergebnisse einander zuordnen zu können, wird eine
+        zufällige Id generiert.
       </p>
       <h2 className="mt-4 mb-1">Hinweise</h2>
       <ul className="list-disc list-inside my-2 space-y-1">

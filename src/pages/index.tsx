@@ -1,4 +1,5 @@
 import { Progress } from "@/components/app-sidebar";
+import Layout from "@/components/layout";
 import Done from "@/components/steps/done";
 import Fallback from "@/components/steps/fallback";
 import Intro from "@/components/steps/intro";
@@ -67,5 +68,5 @@ export default function Home() {
   };
   const Component = componentMap[activeStep] || <Fallback />;
 
-  return <div>{Component}</div>;
+  return <Layout>{Component}</Layout>;
 }
