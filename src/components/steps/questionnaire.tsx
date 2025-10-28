@@ -13,23 +13,25 @@ const Questionnaire = () => {
     <div>
       <h1>Fragebogen</h1>
       <p>
-        Du bist am letzten Schritt angekommen. Jetzt steht nur noch eine kurze
+        Du hast den letzten Schritt erreicht. Jetzt steht nur noch eine kurze
         Umfrage an. Damit die Umfrage mit deinen anderen Ergebnissen verknüpft
-        werden kann, gebe bitte deine Id bei der Umfrage an:
+        werden kann, kopiere bitte die Id und gib sie zu Beginn der Umfrage ein.
       </p>
-      {uuid && <CodeCopy className="my-4">{uuid}</CodeCopy>}
-      {!uuid && (
-        <p className="text-destructive">
-          Es ist ein Fehler aufgetreten. Du hast noch keine Id.
-        </p>
-      )}
-      <Link
-        href={process.env.NEXT_PUBLIC_SURVEY_URL || ""}
-        className={cn(buttonVariants({ variant: "default" }), "mb-8")}
-        target="_blank"
-      >
-        Zur Umfrage <Link2 />
-      </Link>
+      <div className="flex gap-4 max-w-2xl mb-8 my-4">
+        {uuid && <CodeCopy className="grow">{uuid}</CodeCopy>}
+        {!uuid && (
+          <p className="text-destructive">
+            Es ist ein Fehler aufgetreten. Du hast noch keine Id.
+          </p>
+        )}
+        <Link
+          href={process.env.NEXT_PUBLIC_SURVEY_URL || ""}
+          className={cn(buttonVariants({ variant: "default" }))}
+          target="_blank"
+        >
+          Zur Umfrage <Link2 />
+        </Link>
+      </div>
       <p>Wenn du die Umfrage abgeschlossen hast, klicke auf den Button:</p>
       <NextButton
         className="mt-2"

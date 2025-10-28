@@ -2,6 +2,7 @@ import { useTaskStore1, useTaskStore2 } from "@/store/task-store";
 import TaskMenu from "../task-menu";
 import { cn } from "@/lib/utils";
 import TaskInfo from "../task-info";
+import TaskBriefing from "../task-briefing";
 
 const MuiTask = ({
   store,
@@ -14,7 +15,11 @@ const MuiTask = ({
   const isFinished = totalSeconds !== null;
 
   const errorContent = <p>Fehler: Noch nicht bereit für diesen Schritt</p>;
-  const content = <>Aufgabe 1</>;
+  const content = (
+    <>
+      <TaskBriefing variant="contained" filePrefix="material" />
+    </>
+  );
 
   if (!isFinished && !isReady) {
     return (
@@ -29,13 +34,14 @@ const MuiTask = ({
 
   return (
     <>
-      <div>
+      <div className="pb-20">
         <h1>MUI</h1>
         <TaskInfo
           isPaused={isPaused}
           isFinished={isFinished}
           isReady={isReady}
           startTime={startTime}
+          className="sticky top-4 z-10"
         />
         {!isFinished && !isReady ? (
           errorContent

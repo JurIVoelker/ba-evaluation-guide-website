@@ -50,7 +50,7 @@ const TaskMenu = ({
           },
           { locale: de, format: ["minutes", "seconds"] }
         )}{" "}
-        <NextButton className="ml-1" />
+        <NextButton className="ml-1 outline-pulse mt-0" />
       </div>
     );
   } else if (isStarting) {
@@ -58,6 +58,7 @@ const TaskMenu = ({
       <Button
         onClick={onStart}
         disabled={totalSeconds !== null || startTime !== null}
+        className="outline-pulse"
       >
         Starten
       </Button>
@@ -68,7 +69,7 @@ const TaskMenu = ({
         <Button
           onClick={isPaused ? onResume : onPause}
           variant="outline"
-          className={cn("z-20", isPaused && "border-pulse")}
+          className={cn("z-20", isPaused && "outline-pulse")}
         >
           {isPaused ? (
             <>

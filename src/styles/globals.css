@@ -215,11 +215,33 @@ body {
   p {
     @apply max-w-2xl;
   }
+  code {
+    @apply font-mono bg-muted px-1.5 rounded-sm;
+  }
 }
 
 .border-pulse {
   animation: pulse-border 2s infinite;
   transition: border 0.3s ease-in-out;
+}
+
+.outline-pulse {
+  animation: pulse-outline 2s infinite;
+  transition: outline 0.3s ease-in-out;
+  outline: 4px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@keyframes pulse-outline {
+  0% {
+    outline-color: var(--primary);
+  }
+  50% {
+    outline-color: transparent;
+  }
+  100% {
+    outline-color: var(--primary);
+  }
 }
 
 @keyframes pulse-border {

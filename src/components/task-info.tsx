@@ -6,28 +6,31 @@ const TaskInfo = ({
   isReady,
   startTime,
   isPaused,
+  className,
 }: {
   isFinished: boolean;
   isReady: boolean;
   startTime: Date | null;
   isPaused: boolean;
+  className?: string;
 }) => {
   return (
     <>
       {isFinished && (
-        <ConfirmAlert className="mt-2 mb-4">
+        <ConfirmAlert className={`mt-2 mb-4 ${className}`}>
           Du hast die Aufgabe erfolgreich abgeschlossen! Fahre fort mit dem
           nächsten Schritt.
         </ConfirmAlert>
       )}
       {!isFinished && isReady && startTime === null && (
-        <InfoAlert className="mt-2 mb-4">
+        <InfoAlert className={`mt-2 mb-4 ${className}`}>
           Lese dir die Aufgaben sorgfältig durch. Sobald du bereit bist, zu
-          recherchieren oder zu programmieren, klicke auf &quot;Starten&quot;.
+          recherchieren oder zu programmieren, klicke unten auf
+          &quot;Starten&quot;. <strong>Nicht vergessen!</strong>
         </InfoAlert>
       )}
       {!isFinished && isReady && startTime !== null && (
-        <InfoAlert className="mt-2 mb-4">
+        <InfoAlert className={`mt-2 mb-4 ${className}`}>
           {!isPaused && (
             <>
               Erledige die Aufgaben. Sobald du fertig bist, klicke auf

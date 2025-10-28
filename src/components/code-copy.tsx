@@ -36,7 +36,7 @@ export default function CodeCopy({
   const Comp = textArea ? Textarea : Input;
 
   return (
-    <div className={cn(className)} {...props}>
+    <div className={cn(className, "max-w-2xl font-mono")} {...props}>
       <Label htmlFor={id} className="hidden">
         Copy to clipboard
       </Label>

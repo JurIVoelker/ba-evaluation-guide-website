@@ -1,6 +1,7 @@
 import { useMainStore } from "@/store/main-store";
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const NextButton = ({
   onClick = null,
@@ -17,7 +18,7 @@ const NextButton = ({
         if (onClick === null) setActiveStep(progress);
         else onClick();
       }}
-      className={className}
+      className={cn("mt-8", className)}
     >
       Weiter <ArrowRight />
     </Button>

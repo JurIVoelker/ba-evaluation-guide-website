@@ -94,30 +94,38 @@ const CodeStep = ({ ...props }) => {
           in der Datei <span className="bg-card px-2 rounded-sm">id.txt</span>{" "}
           gespeichert. Kopiere diese Id und füge sie in das folgende Feld ein:
         </p>
-        <Input
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-          className="my-4"
-          placeholder="Id eingeben"
-          disabled={!isActive || loading}
-        />
-        {error && (
-          <p className="text-destructive mb-4 flex items-center gap-2">
-            <TriangleAlert className="size-4 shrink-0" />
-            {error}
-          </p>
-        )}
-        <p className="mb-4">
-          Klicke auf den Button um die restlichen Daten zu speichern:
-        </p>
-        <Button
-          onClick={onClick}
-          loading={loading}
-          disabled={loading || !id || !isActive}
-          loadingText="Speichern"
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            onClick();
+          }}
         >
-          Weiter
-        </Button>
+          <Input
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            className="my-4 max-w-2xl"
+            placeholder="Id eingeben"
+            disabled={!isActive || loading}
+          />
+          {error && (
+            <p className="text-destructive mb-4 flex items-center gap-2">
+              <TriangleAlert className="size-4 shrink-0" />
+              {error}
+            </p>
+          )}
+          <p className="mb-4">
+            Klicke auf den Button um die restlichen Daten zu speichern:
+          </p>
+          <Button
+            loading={loading}
+            disabled={loading || !id || !isActive}
+            loadingText="Speichern"
+            type="submit"
+            className={cn(!loading && id && isActive && "outline-pulse")}
+          >
+            Weiter
+          </Button>
+        </form>
       </div>
     </>
   );
