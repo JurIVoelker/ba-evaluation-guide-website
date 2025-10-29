@@ -18,7 +18,7 @@ type TaskStore = {
 };
 
 const calcPauseTime = (pauseStart: Date) => {
-  const pauseStartMillis = pauseStart.valueOf();
+  const pauseStartMillis = new Date(pauseStart).valueOf();
   const nowMillis = new Date().valueOf();
   return nowMillis - pauseStartMillis;
 };
@@ -41,6 +41,7 @@ const TaskStoreConfig = (storeName: string) =>
 
       finish: () => {
         const startTime = get().startTime;
+        const pauseStart = get().pauseStart;
 
         if (startTime === null) {
           throw new Error("Cannot finish a task that hasn't been started");
@@ -49,8 +50,7 @@ const TaskStoreConfig = (storeName: string) =>
           throw new Error("Already finished");
         }
 
-        let pauseMillis = get().pauseMillis;
-        const pauseStart = get().pauseStart;
+        let pauseMillis = isNaN(get().pauseMillis) ? 0 : get().pauseMillis || 0;
 
         if (get().isPaused && pauseStart !== null) {
           pauseMillis += calcPauseTime(pauseStart);
@@ -88,15 +88,35 @@ const TaskStoreConfig = (storeName: string) =>
           throw new Error("Cannot resume when not started or already resumed");
         }
 
+        const pauseMillis = isNaN(get().pauseMillis)
+          ? 0
+          : get().pauseMillis || 0;
+
         set({
           isPaused: false,
-          pauseMillis: calcPauseTime(pauseStart) + get().pauseMillis,
+          pauseMillis: calcPauseTime(pauseStart) + pauseMillis,
           pauseStart: null,
         });
       },
+      toString: () => {
+        return JSON.stringify({
+          startTime: get().startTime,
+          totalSeconds: get().totalSeconds,
+          isPaused: get().isPaused,
+          pauseMillis: get().pauseMillis,
+          pauseStart: get().pauseStart,
+        });
+      },
     }),
-    { name: storeName }
+    {
+      name: storeName,
+    }
   );
+
+// partialize: (state) =>
+//       Object.fromEntries(
+//         Object.entries(state).filter(([key]) => !['foo'].includes(key)),
+//       ),
 
 export const useTaskStore1 = create<TaskStore>()(
   TaskStoreConfig("task-store-1")

@@ -40,7 +40,7 @@ const TaskInfo = ({
           )}
           {isPaused && (
             <>
-              Die Aufgabe ist pausiert. Klicke auf &quot;Fortsetzen&quot;, um
+              Die Aufgabe ist pausiert. Klicke auf &quot;Weiter&quot;, um
               fortzufahren.
             </>
           )}
