@@ -1,5 +1,4 @@
 import Link from "next/link";
-import CodeCopy from "../code-copy";
 import { useMainStore } from "@/store/main-store";
 import { useEffect } from "react";
 import NextButton from "../next-button";
@@ -10,6 +9,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
+import CodeCopy from "../code-copy";
+import { CommandCopy, FileCopy } from "../copy-action";
 
 const Debugging = () => {
   return (
@@ -30,9 +31,9 @@ const Debugging = () => {
             </p>
             <p>
               Wenn bei dem Öffnen des Dev-Containers ein Fehler auftritt, öffne
-              das Terminal. Öffne WSL mit dem Kommando <code>wsl</code>.
-              Anschließend navigiere mithilfe des folgenden Kommandos in den
-              runtime Ordner:
+              das Terminal. Öffne WSL mit dem Kommando{" "}
+              <CommandCopy>wsl</CommandCopy>. Anschließend navigiere mithilfe
+              des folgenden Kommandos in den runtime Ordner:
             </p>
             <CodeCopy className="my-2">
               cd ~/../../mnt/wslg/runtime-dir
@@ -101,9 +102,7 @@ const DevContainer = () => {
           Dev Containers
         </Link>{" "}
         installiert ist. Erstelle eine neue Datei{" "}
-        <code className="bg-slate-100 p-1 rounded-md">
-          .devcontainer/devcontainer.json
-        </code>
+        <FileCopy>.devcontainer/devcontainer.json</FileCopy>
         {" mit dem folgenden Inhalt:"}
       </p>
       <CodeCopy className="my-4 max-w-2xl" textArea>
@@ -119,11 +118,9 @@ const DevContainer = () => {
       <p>
         Dann öffne die Kommando-Palette mit <Kbd>⌘+Shift+P</Kbd>
         {" bzw. "}
-        <Kbd>Strg+Shift+P</Kbd> und wähle{" "}
-        <code className="bg-slate-100 p-1 rounded-md">
-          &gt;Dev Containers: Reopen in Container
-        </code>
-        . Visual Studio Code wird jetzt den Dev Container starten und dich
+        <Kbd>Strg+Shift+P</Kbd> und gebe{" "}
+        <CommandCopy>&gt;Dev Containers: Reopen in Container</CommandCopy>.
+        Visual Studio Code wird jetzt den Dev Container starten und dich
         automatisch darin verbinden.
       </p>
       <Debugging />

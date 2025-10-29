@@ -7,6 +7,7 @@ import { useMainStore } from "@/store/main-store";
 import { useTaskStore1, useTaskStore2 } from "@/store/task-store";
 import { cn } from "@/lib/utils";
 import ConfirmAlert from "../alert/confirm-alert";
+import { FileCopy } from "../copy-action";
 
 const CodeStep = ({ ...props }) => {
   const [id, setId] = useState("");
@@ -91,8 +92,8 @@ const CodeStep = ({ ...props }) => {
         <CodeCopy className="my-4">{`bun upload-results -g ${group}`}</CodeCopy>
         <p>
           Am Ende des Kommandos, wird eine Id zurückgegeben. Diese wird außerdem
-          in der Datei <span className="bg-card px-2 rounded-sm">id.txt</span>{" "}
-          gespeichert. Kopiere diese Id und füge sie in das folgende Feld ein:
+          in der Datei <FileCopy>id.txt</FileCopy> gespeichert. Kopiere diese Id
+          und füge sie in das folgende Feld ein:
         </p>
         <form
           onSubmit={(e) => {

@@ -1,5 +1,8 @@
+import Link from "next/link";
 import CodeCopy from "./code-copy";
-import ColorCopy from "./color-copy";
+import { ColorCopy, CommandCopy, FileCopy } from "./copy-action";
+import { CodeCopy as InlineCodeCopy } from "./copy-action";
+import { FilePen } from "lucide-react";
 
 const TaskBriefing = ({
   variant,
@@ -8,13 +11,32 @@ const TaskBriefing = ({
   variant: "contained" | "default";
   filePrefix: "material" | "shadcn";
 }) => {
+  const subFolder = filePrefix === "material" ? "mui" : "shadcn";
   return (
     <>
+      <h2 className="mt-6 mb-1">Vorbereitung</h2>
+      <p>
+        Navigiere im VS-Code-Terminal in den passenden Unterordner und starte
+        den Entwicklungsserver mit{" "}
+        <CommandCopy>{`cd ${subFolder} && bun dev`}</CommandCopy>. Jetzt kannst
+        du die Seite in deinem Browser unter{" "}
+        <Link href="http://localhost:3000" target="_blank">
+          http://localhost:3000
+        </Link>{" "}
+        erreichen.
+      </p>
+
+      <p>
+        Dort wird die Datei{" "}
+        <FileCopy>{`${subFolder}/src/pages/index.tsx`}</FileCopy> gerendert. In
+        dieser wird auch die Button-Komponente verwendet, die angepasst werden
+        soll.
+      </p>
       <h2 className="mt-10 mb-1">1. Anpassung einer Variante</h2>
       <p>
         Die Variante &quot;{variant}&quot; der Button-Komponente soll angepasst
         werden. Dafür soll die Hintergrundfarbe auf den Wert{" "}
-        <ColorCopy color="FF0000" /> gesetzt werden.
+        <ColorCopy>#FF0000</ColorCopy> gesetzt werden.
       </p>
       <p className="mt-2">Unter Verwendung des folgenden Codes:</p>
       <CodeCopy className="my-2">{`<Button variant="${variant}">Hallo</Button>`}</CodeCopy>
@@ -26,16 +48,16 @@ const TaskBriefing = ({
       <h2 className="mt-10 mb-1">2. Ladeanimation hinzufügen</h2>
       <p>
         Als nächstes soll die Button-Komponente um eine Ladeanimation erweitert
-        werden. Diese soll angezeigt wenn die Prop <code>loading</code> gesetzt
-        ist.
+        werden. Diese soll angezeigt wenn die Prop{" "}
+        <InlineCodeCopy>loading</InlineCodeCopy> gesetzt ist.
       </p>
       <p>
         Für die Ladeanimation soll die Komponente{" "}
-        <code>{`<PulseLoader color="white" size={8} />`}</code>
+        <InlineCodeCopy>{`<PulseLoader color="white" size={8} />`}</InlineCodeCopy>
         {" der Bibliothek "}
-        <code>{`import { PulseLoader } from "react-spinners";`}</code> verwendet
-        werden. Außerdem soll der Button während des Ladens deaktiviert (
-        <code>disabled</code>) sein.
+        <InlineCodeCopy>{`import { PulseLoader } from "react-spinners";`}</InlineCodeCopy>{" "}
+        verwendet werden. Außerdem soll der Button während des Ladens
+        deaktiviert (<InlineCodeCopy>disabled</InlineCodeCopy>) sein.
       </p>
       <p className="mt-2">Unter Verwendung des folgenden Codes:</p>
       <CodeCopy className="my-2">{`<Button variant="${variant}" loading>Hallo</Button>`}</CodeCopy>
@@ -47,15 +69,18 @@ const TaskBriefing = ({
       <h2 className="mt-10 mb-1">3. Neue Variante hinzufügen</h2>
       <p>
         Die Variante &quot;send&quot; soll der Button-Komponente hinzugefügt
-        werden. Diese soll die Hintergrundfarbe <ColorCopy color="0015D4" />{" "}
+        werden. Diese soll die Hintergrundfarbe <ColorCopy>#0015D4</ColorCopy>{" "}
         haben, der Text soll weiß sein und auf der rechten Seite soll ein
         Sende-Icon angezeigt werden. Dafür soll das Icon{" "}
-        <code>{`<SendIcon className="size-4" />`}</code> {" der Bibliothek "}
-        <code>{`import { SendIcon } from "lucide-react";`}</code> verwendet
-        werden.
+        <InlineCodeCopy>{`<SendIcon className="size-4" />`}</InlineCodeCopy>{" "}
+        {" der Bibliothek "}
+        <InlineCodeCopy>{`import { SendIcon } from "lucide-react";`}</InlineCodeCopy>{" "}
+        verwendet werden.
       </p>
       <p className="mt-2">Unter Verwendung des folgenden Codes:</p>
-      <CodeCopy className="my-2">{`<Button variant="send">Hallo</Button>`}</CodeCopy>
+      <CodeCopy className="my-2">{`<Button variant="send">${
+        filePrefix === "material" ? "Senden" : "Hallo"
+      }</Button>`}</CodeCopy>
       <p>Sollte deine Komponente so aussehen:</p>
       <img
         src={`/${filePrefix}-button-3.png`}
