@@ -23,8 +23,8 @@ const VorbereitungPage = () => {
     <Layout hideSidebar>
       <h1>Vorbereitung</h1>
       <p>
-        Damit das Aufsetzen der Evaluation schneller geht, kannst du die alle
-        Voraussetzungen schon vorher herunterladen und installieren.
+        Damit das Aufsetzen der Evaluation schneller geht, kannst du bereits
+        vorher notwendige Software und die Entwicklungsumgebung herunterladen.
       </p>
       <ol className="mt-4 space-y-2">
         {steps.map((step, index) => (
