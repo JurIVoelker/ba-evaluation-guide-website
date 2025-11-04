@@ -93,8 +93,8 @@ const TaskMenu = ({
   }
 
   return (
-    <div className="fixed bottom-4 w-[calc(100%-var(--sidebar-width))] flex justify-center left-[calc(var(--sidebar-width)-2rem)]">
-      <Card className="p-4 box-border flex justify-center flex-row gap-3 relative">
+    <div className="fixed bottom-4 w-[calc(100%-var(--sidebar-width))] flex justify-center left-[calc(var(--sidebar-width)-2rem)] pointer-events-none z-50">
+      <Card className="p-4 box-border flex justify-center flex-row gap-3 relative pointer-events-auto">
         {content}
       </Card>
     </div>

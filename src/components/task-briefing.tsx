@@ -2,7 +2,8 @@ import Link from "next/link";
 import CodeCopy from "./code-copy";
 import { ColorCopy, CommandCopy, FileCopy } from "./copy-action";
 import { CodeCopy as InlineCodeCopy } from "./copy-action";
-import { FilePen } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { TriangleAlertIcon } from "lucide-react";
 
 const TaskBriefing = ({
   variant,
@@ -28,10 +29,45 @@ const TaskBriefing = ({
 
       <p>
         Dort wird die Datei{" "}
-        <FileCopy>{`${subFolder}/src/pages/index.tsx`}</FileCopy> gerendert. In
-        dieser wird auch die Button-Komponente verwendet, die angepasst werden
-        soll.
+        <FileCopy>{`${subFolder}/src/pages/index.tsx`}</FileCopy> gerendert.
       </p>
+      <Card className="mt-6 max-w-2xl">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <TriangleAlertIcon className="text-destructive size-5" />
+            Beachten bei der Umsetzung
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          Bei der Anpassung des Button-Styles musst du sicherstellen, dass die
+          Änderungen global angewandt werden. Das bedeutet, du darfst auf
+          oberster Ebene keine zusätzlichen Props an die Button-Komponente
+          übergeben, als in der Aufgabe spezifiziert. <br />
+          {filePrefix === "material" && (
+            <>
+              Du kannst dies erreichen, indem du entweder globale CSS-Regeln
+              verwendest oder das MUI-Theming benutzt. Eine weitere Methode ist
+              es, eine Wrapper-Komponente zu erstellen, die die eigentliche
+              Button-Komponente umschließt, dort die Änderungen vornimmt und die
+              Props weiterreicht (empfohlen).
+            </>
+          )}
+          {filePrefix === "shadcn" && (
+            <>
+              Du kannst dies erreichen, indem du entweder globale CSS-Regeln
+              verwendest oder die Komponente (
+              <FileCopy>{`${filePrefix}/src/components/ui/button.tsx`}</FileCopy>
+              ) direkt anpasst (empfohlen).
+            </>
+          )}{" "}
+          Im Beispiel von Aufgabe 1 wäre der folgende Codeschnipsel innerhalb
+          der Datei <FileCopy>{`${filePrefix}/src/pages/index.tsx`}</FileCopy>{" "}
+          also nicht zulässig:{" "}
+          <InlineCodeCopy>{`<Button variant="${variant}" className="bg-red-500" />`}</InlineCodeCopy>
+          . Nur der Variant-Prop darf übergeben werden:
+          <InlineCodeCopy>{`<Button variant="${variant}" />`}</InlineCodeCopy>
+        </CardContent>
+      </Card>
       <h2 className="mt-10 mb-1">1. Anpassung einer Variante</h2>
       <p>
         Die Variante &quot;{variant}&quot; der Button-Komponente soll angepasst

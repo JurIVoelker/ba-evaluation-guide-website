@@ -53,7 +53,7 @@ const Intro = () => {
         zufällige Id generiert.
       </p>
       <h2 className="mt-4 mb-1">Hinweise</h2>
-      <ul className="list-disc list-inside my-2 space-y-1">
+      <ul className="list-disc list-inside my-2 space-y-1 max-w-2xl">
         <li>
           Bitte stelle sicher, dass du während der Evaluation ungestört bist und
           genügend Zeit hast, um alle Schritte sorgfältig durchzuführen
