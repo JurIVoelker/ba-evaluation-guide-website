@@ -30,7 +30,6 @@ const ShadcnTask = ({
           isFinished={isFinished}
           isReady={isReady}
           startTime={startTime}
-          className="sticky top-4 z-10"
         />
         {!isFinished && !isReady ? (
           errorContent

@@ -15,7 +15,7 @@ const TaskBriefing = ({
   const subFolder = filePrefix === "material" ? "mui" : "shadcn";
   return (
     <>
-      <h2 className="mt-6 mb-1">Vorbereitung</h2>
+      <h2 className="mb-1">Vorbereitung</h2>
       <p>
         Navigiere im VS-Code-Terminal in den passenden Unterordner und starte
         den Entwicklungsserver mit{" "}
