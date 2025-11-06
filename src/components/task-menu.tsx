@@ -59,6 +59,7 @@ const TaskMenu = ({
         onClick={onStart}
         disabled={totalSeconds !== null || startTime !== null}
         className="outline-pulse"
+        size="lg"
       >
         Starten
       </Button>
@@ -70,6 +71,7 @@ const TaskMenu = ({
           onClick={isPaused ? onResume : onPause}
           variant="outline"
           className={cn("z-20", isPaused && "outline-pulse")}
+          size="lg"
         >
           {isPaused ? (
             <>
@@ -83,7 +85,7 @@ const TaskMenu = ({
           )}
         </Button>
         <ConfirmDialog onConfirm={onFinish}>
-          <Button data-test-id="finish-task-button">
+          <Button data-test-id="finish-task-button" size="lg">
             <Flag />
             Fertig
           </Button>
@@ -94,7 +96,7 @@ const TaskMenu = ({
 
   return (
     <div className="fixed bottom-4 w-[calc(100%-var(--sidebar-width))] flex justify-center left-[calc(var(--sidebar-width)-2rem)] pointer-events-none z-50">
-      <Card className="p-4 box-border flex justify-center flex-row gap-3 relative pointer-events-auto">
+      <Card className="p-5 box-border flex justify-center flex-row gap-4 relative pointer-events-auto">
         {content}
       </Card>
     </div>
