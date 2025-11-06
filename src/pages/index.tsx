@@ -10,7 +10,9 @@ import Setup from "@/components/steps/setup";
 import ShadcnTask from "@/components/steps/shadcn-task";
 import { useMainStore } from "@/store/main-store";
 import { useTaskStore1, useTaskStore2 } from "@/store/task-store";
+import { TriangleAlert } from "lucide-react";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 export default function Home() {
   const { activeStep, group, setGroup, progress, ready, isReady } =
@@ -32,9 +34,31 @@ export default function Home() {
 
   useEffect(() => {
     const fetchGroup = async () => {
-      const response = await fetch("/api/group");
-      const data = (await response.json()) as { group: "A" | "B" };
-      setGroup(data.group);
+      try {
+        const response = await fetch("/api/group");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = (await response.json()) as { group: "A" | "B" };
+        setGroup(data.group);
+      } catch {
+        toast(
+          <div className="">
+            <div className="inline-flex items-center gap-1.5">
+              <TriangleAlert className="text-destructive size-4 shrink-0" />
+              <h3 className="text-destructive font-medium">
+                Fehler beim Aufsetzen
+              </h3>
+            </div>
+            <div className="font-normal">
+              Es gab einen Fehler beim Aufsetzen der Webseite. Bitte lade die
+              Seite neu. Sollte das Problem weiterhin bestehen, kontaktiere den
+              Versuchsleiter.
+            </div>
+          </div>,
+          { duration: 100000, dismissible: false }
+        );
+      }
     };
 
     if (isReady && group === null) {

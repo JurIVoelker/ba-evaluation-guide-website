@@ -56,12 +56,12 @@ const TaskBriefing = ({
             <>
               Du kannst dies erreichen, indem du entweder globale CSS-Regeln
               verwendest oder die Komponente (
-              <FileCopy>{`${filePrefix}/src/components/ui/button.tsx`}</FileCopy>
+              <FileCopy>{`${subFolder}/src/components/ui/button.tsx`}</FileCopy>
               ) direkt anpasst (empfohlen).
             </>
           )}{" "}
           Im Beispiel von Aufgabe 1 wäre der folgende Codeschnipsel innerhalb
-          der Datei <FileCopy>{`${filePrefix}/src/pages/index.tsx`}</FileCopy>{" "}
+          der Datei <FileCopy>{`${subFolder}/src/pages/index.tsx`}</FileCopy>{" "}
           also nicht zulässig:{" "}
           <InlineCodeCopy>{`<Button variant="${variant}" className="bg-red-500" />`}</InlineCodeCopy>
           . Nur der Variant-Prop darf übergeben werden:

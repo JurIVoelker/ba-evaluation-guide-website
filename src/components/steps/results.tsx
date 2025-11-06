@@ -60,9 +60,13 @@ const CodeStep = ({ ...props }) => {
         method: "POST",
         body: JSON.stringify(data),
       });
+
+      const json = await response.json();
       if (!response.ok) {
         throw new Error(
-          `Fehler beim Hochladen der Daten: ${response.statusText}`
+          `Fehler beim Hochladen der Daten: ${
+            json.error || response.statusText
+          }`
         );
       }
       setProgress("questionnaire");
