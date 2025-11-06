@@ -19,3 +19,7 @@ export function middleware(req: NextRequest) {
   url.pathname = "/api/auth";
   return NextResponse.rewrite(url);
 }
+
+export const config = {
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|vorbereitung).*)"],
+};
